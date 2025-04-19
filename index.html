@@ -294,10 +294,10 @@
             else { showMessage("Ihr Browser unterstützt das direkte Herunterladen von Dateien nicht.", 'warning'); }
         }
         function downloadGroupTemplate() { /* ... */
-             const csvContent = "Gruppenname;Teilnehmerzahl\nBeispielgruppe ÄÖÜ;25\nBeispielgruppe B 🎉;18\n"; downloadFile("gruppen_vorlage.csv", csvContent);
+             const csvContent = "Gruppenname;Teilnehmerzahl\nJF Adlernest;19\nJF Bergwacht;23\nJF Drachenfels;17\nJF Eichenhain;20\nJF Falkenhorst;13\nJF Gipfelsturm;23\nJF Höhenflug;16\nJF Inselwehr;25\nJF Junglöwen;21\nJF Kreuzberg;19\nJF Lindenwacht;24\nJF Morgenrot;17\nJF Nachtwächter;13\nJF Oderbrück;13\nJF Phönixnest;21\nJF Quellenbach;5\nJF Rabenfels;12\nJF Sonnenblick;19\nJF Tannenhöhe;22\nJF Uferwacht;48\nJF Vulkanfels;11\nJF Waldwächter;19\nJF Xarrdorf;17\nJF Ybbsitz;22\nJF Ziegelhütte;17\nJF Ägidienberg;7\nJF Ötztal;19\nTHW Altenberg;14\nTHW Brückenheim;17\nTHW Dammbau;24\nKJF Leitung;9"; downloadFile("gruppen_vorlage.csv", csvContent);
         }
         function downloadBusTemplate() { /* ... */
-             const csvContent = "Bus Kennzeichnung;Sitzplätze\nBus 1 (Müller Reisen);50\nBus 2 (Sonderfahrt);70\n"; downloadFile("busse_vorlage.csv", csvContent);
+             const csvContent = "Bus Kennzeichnung;Sitzplätze\nBus 1;65\nBus 2;69\nBus 3;65\nBus 4;69\nBus 5;69\nBus 6;69\nBus 7;69\nBus 8;57\nBus 9;57\n"; downloadFile("busse_vorlage.csv", csvContent);
         }
         function exportGruppenToCSV() { /* ... */
              hideMessage(); const gruppenInputs = document.getElementById('gruppenContainer').children; if (gruppenInputs.length === 0) { showMessage("Keine Gruppen zum Exportieren vorhanden.", 'info'); return; } const csvRows = ['Gruppenname;Teilnehmerzahl']; let validGroupsFound = 0; for (let i = 0; i < gruppenInputs.length; i++) { if (!gruppenInputs[i] || !gruppenInputs[i].id) continue; const idSuffix = gruppenInputs[i].id.substring('gruppe-'.length); const nameInput = document.getElementById(`gruppeName-${idSuffix}`); const sizeInput = document.getElementById(`gruppeSize-${idSuffix}`); if (!nameInput || !sizeInput) continue; const name = nameInput.value.trim(); const size = sizeInput.value.trim(); if (name && size && parseInt(size) > 0) { const safeName = `"${name.replace(/"/g, '""')}"`; csvRows.push(`${safeName};${size}`); validGroupsFound++; } } if (validGroupsFound > 0) { downloadFile("gruppen_export.csv", csvRows.join('\n')); showMessage("Gruppen erfolgreich exportiert.", "success"); } else { showMessage("Keine gültigen Gruppen zum Exportieren gefunden.", 'warning'); }
@@ -504,4 +504,3 @@
 
 </body>
 </html>
-
